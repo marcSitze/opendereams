@@ -1,0 +1,36 @@
+<%- include('./layout/header.ejs') %> 
+  <br><br><br>
+<div class="container">
+
+   <!-- Jumbotron Header -->
+   <header class="jumbotron my-3 text-center" id="header" style="background: #dbe1e2;">
+    <h1 class="display-3 lead-1">A Warm Welcome!</h1>
+    <p class="lead-2">A warm welcome and lots of good wishes on becoming part of our growing team. Congratulations and on behalf of all the members. We are all happy and excited about your inputs and contribution to our Network.</p>
+    <!-- <a href="#" class="btn btn-primary btn-lg">Call to action!</a> -->
+  </header>
+</div>
+
+<div id="portfolio-wrapper">
+    <div class="container">
+      <div class="row text-center">
+        <% products.forEach(product => { %>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="/<%= product.path %>" class="pop-img" title="Add Description">
+              <img class="card-img-top home-img" src="/<%= product.image %>" alt="product image" />
+              <div class="card-body">
+                <h4 class="card-title text-black" style="text-decoration: none;"><%= product.name %></h4>
+                <p class="card-text">published: <%= new Date(Number(product.createdAt)).getDate() %>/<%= new Date(Number(product.createdAt)).getDay() %>/<%= new Date(Number(product.createdAt)).getFullYear() %></p>
+              </div>
+              </a>
+              <div class="card-footer">
+                <a href="/products/<%= product.id %>" class="btn btn-info" style="color: #fff;">View</a>
+                <button type="submit" data-id="<%= product.id %>" class="btn btn-warning add-to-cart" style="color: #fff;">add to cart</button>    
+              </div>
+            </div>
+          </div>
+        <% }) %> 
+      </div>
+  </div>
+</div>
+<%- include('./layout/footer.ejs') %> 

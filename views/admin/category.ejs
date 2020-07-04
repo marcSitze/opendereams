@@ -1,0 +1,24 @@
+<%- include('./header') %>
+<div class="container-fluid">
+  <div class="row">
+    <%- include('./sidebar') %> 
+    <div class="col-md-10">
+      <br><br><br>
+      <h1>All Categories</h1>
+        <% categories.forEach(category => { %>
+            <div><%= category.name %> </div>
+        <% }) %>
+
+        <h1>Create a new category</h1>
+        <% if(locals.errors != null) { %>
+            <% errors.forEach(error => { %>
+                <div><%= error.msg %> </div>
+            <% }) %> 
+        <% } %> 
+        <form action="/admin/category" method="POST">
+            <input type="text" name="category">
+            <button type="submit">create</button>
+        </form>
+    </div>
+  </div>
+</div>

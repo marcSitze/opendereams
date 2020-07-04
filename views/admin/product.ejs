@@ -1,0 +1,25 @@
+<%- include('./header') %>
+<div class="container-fluid">
+  <div class="row">
+    <%- include('./sidebar') %> 
+    <div class="col-md-10">
+      <br><br><br>
+      <h1>product on vue</h1>
+        <div><%= product.name %></div>
+        <div><%= product.price %></div>
+        <div><%= product.quantity %></div>
+        <div><%= product.category %></div>
+        <div><%= product.createdAt %></div>
+        <span>
+            <form method="POST" action="/admin/products/<%= product.id %>?_method=DELETE" enctype="multipart/form-data">
+                <div class="my-3">
+                  <button type="submit" class="btn btn-danger mt-5 mb-3">Delete</button>
+                </div>
+              </form>
+        </span>
+        <span>
+            <a class="btn btn-warning" href="/admin/products/<%= product.id %>/edit">Update</a>
+        </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+/*==================================================
+			Bootstrap 3 Media Queries        
+==================================================*/
+
+
+/* Large Devices (Desktops & Laptops) */
+
+@media (min-width: 1200px) and (max-width: 1299px) {
+
+}
+
+
+/* Medium Devices (Landscape Tablets & Medium Desktops) */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+
+/* Small Devices (Portrait Tablets & Small Desktops) */
+
+@media (min-width: 768px) and (max-width: 991px) {
+   
+}
+
+
+/* Extra Small Devices (Landscape Phones & Portrait Tablets) */
+
+@media (max-width: 767px) {
+   
+}
+
+
+/* Extra Small Devices (Portrait Phones & Smaller Devices) */
+
+@media (max-width: 480px) {
+    /* Register */
+    #register, #login{
+        width: 90%;
+        margin: 20px auto;
+        padding: 30px 60px 40px 60px;
+    }
+    /* img{
+        width: 100px;
+        height: 100px;
+      } */
+      .home-img{
+        width: 100%;
+        height: 210px;
+      }
+      .square-img{
+        width: 100px;
+        height: 100px;
+      }
+}
+
+
+/* Extra Small Devices (Portrait Phones & Smaller Devices) */
+
+@media (max-width: 320px) {
+    /* register */
+    #register, #login{
+        width: 90%;
+        margin: 20px auto;
+        padding: 30px 60px 40px 60px;
+    }
+    .label-txt {
+    padding: 10px;
+    font-family: sans-serif;
+    font-size: .7em;
+    letter-spacing: .5px;
+    color: rgb(120,120,120);
+      }
+    .rights p{
+       font-size: 10px;
+    }
+    /* home */
+    .lead-1{
+        font-size: 30px;
+    }
+    .lead-2{
+        font-size: 12px;
+        line-height: 30px;
+    }
+    /* img{
+        width: 100px;
+        height: 100px;
+      } */
+      .home-img{
+        width: 100%;
+        height: 210px;
+      }
+      .square-img{
+        width: 100px;
+        height: 100px;
+      }
+
+}

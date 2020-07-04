@@ -1,0 +1,20 @@
+<%- include('./header') %>
+<div class="container-fluid">
+  <div class="row">
+    <%- include('./sidebar') %> 
+    <div class="col-md-10">
+      <br><br><br>
+      <% if(locals.errors != null) {%>
+        <% errors.forEach(error =>{ %>
+            <li class="alert alert-danger"><%= error.msg %></li>
+        <% }) %> 
+        <% } %> 
+        <form method="POST" action="/admin/products/<%= product.id %>?_method=PUT" enctype="multipart/form-data">
+        <%- include('../partials/_product') %> 
+        <div class="my-3">
+        <button type="submit" class="btn btn-info mt-5 mb-3">Update</button>
+        </div>
+        </form>
+    </div>
+  </div>
+</div>

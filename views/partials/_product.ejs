@@ -1,0 +1,47 @@
+     <label>
+      <p class="label-txt">product name</p>
+      <input type="text" name="name" value="<%= product.name %>" class="input">
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <br>
+    <label>
+    <p class="label-txt">product price</p>
+    <input type="text" name="price" value="<%= product.price %>" class="input">
+    <div class="line-box">
+      <div class="line"></div>
+    </div>
+  </label>
+  <br>
+  <label>
+    <p class="label-txt">product category</p>
+   <select name="category" value="<%= product.category %>">
+    <% categories.forEach(category => { %>
+      <option value="<%= category.name %>"><%= category.name %></option>
+    <% }) %> 
+    </select>
+  <div class="line-box">
+    <div class="line"></div>
+  </div>
+  </label>
+  <br>
+  <label>
+  <p class="label-txt">product Quantity</p>
+  <input type="text" name="quantity" value="<%= product.quantity %>" class="input">
+  <div class="line-box">
+    <div class="line"></div>
+  </div>
+  </label>
+  <br>
+  <p>Image file:</p>
+  <div class="custom-file mb-3">
+    <input type="file" class="custom-file-input" id="customFile" name="image">
+    <label class="custom-file-label" for="customFile">Choose file</label>
+  </div>
+    <div class="">
+      <label>
+        Short image description: 
+        <textarea name="description" id="" cols="30" rows="2"><%= product.description %></textarea>
+      </label>
+    </div>
