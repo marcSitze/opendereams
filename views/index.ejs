@@ -17,9 +17,10 @@
           <div class="col-lg-3 col-md-6 mb-4">
             <div class="card h-100">
               <a href="/<%= product.path %>" class="pop-img" title="Add Description">
-              <img class="card-img-top home-img" src="/<%= product.image %>" alt="product image" />
+              <img class="card-img-top home-img product-image" src="/<%= product.image %>" alt="product image" />
               <div class="card-body">
-                <h4 class="card-title text-black" style="text-decoration: none;"><%= product.name %></h4>
+                <h4 class="card-title text-black product-name" style="text-decoration: none;"><%= product.name %></h4>
+                <h4 class="card-title text-black product-price" style="text-decoration: none;"><%= product.price %></h4>
                 <p class="card-text">published: <%= new Date(Number(product.createdAt)).getDate() %>/<%= new Date(Number(product.createdAt)).getDay() %>/<%= new Date(Number(product.createdAt)).getFullYear() %></p>
               </div>
               </a>
