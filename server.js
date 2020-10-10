@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const port = process.env.PORT || 5000;
 const app = express();
-require('dotenv').config();
+// require('dotenv').config();
 const routes = require('./routes/index');
 const summerRoute = require('./routes/summerForm');
 // const chihuahuaRoute = require('./routes/chihuahuaForm');
