@@ -1,27 +1,19 @@
+<%- include('../layouts/header.ejs') %> 
+<style>
+  .navbar{
+    background-color: gray !important;
+  }
+</style>
 
+<form class="form-signin text-center" action="/login" method="POST" id="login">
+  <img class="mb-4" src="/images/odLogo.png" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal text-dark">Please sign in</h1>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
+  <label for="inputPassword" class="sr-only" name="password">Password</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+ 
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
-<h2 class="text-center">Login</h2>
-
-<form action="/login" method="POST" id="login">
-  <label>
-    <p class="label-txt">ENTER YOUR EMAIL</p>
-    <input type="email" name="email" class="input">
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <label>
-    <p class="label-txt">ENTER YOUR PASSWORD</p>
-    <input type="password" name="password" placeholder="password" class="input">
-    <div class="line-box">
-      <div class="line"></div>
-    </div>
-  </label>
-  <button type="submit" class="submit">Login</button>
-  <a href="/register">Register</a>
 </form>
-
-
-
-
 
