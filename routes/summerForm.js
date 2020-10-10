@@ -78,7 +78,8 @@ router.post('/', (req, res) => {
     sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
     const msg = {
-    to: 'cristina@open-dreams.org',
+    // to: 'cristina@open-dreams.org',
+    to: 'marcsitze01@gmail.com',
     from: 'info.opendreams@gmail.com',
     subject: "Application Form",
     html: `

@@ -43,7 +43,8 @@ exports.register = async (req, res) => {
           ),
            httpOnly: true
          });
-       res.status(201).json({ token, user });
+    //    res.status(201).json({ token, user });
+         res.redirect('/articles');
     } catch(err) {
         console.error(err);
     }
@@ -81,5 +82,6 @@ exports.login = async (req, res) => {
       ),
        httpOnly: true
      });
-   return res.json({ token, user });
+//    return res.json({ token, user });
+      return res.redirect('/articles');
 };
