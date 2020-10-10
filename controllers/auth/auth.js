@@ -62,7 +62,7 @@ exports.login = async (req, res) => {
        });
    }
 
-   const isMatch = password === user.password;
+   const isMatch = password == user.password? true: false;
 
    if(!isMatch){
      return res.status(400).json({
