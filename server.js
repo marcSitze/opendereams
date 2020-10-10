@@ -22,7 +22,8 @@ const adminRoute = require('./routes/admin');
 
 // Connection to database
 // process.env.MONGODB_URI
-mongoose.connect(process.env.MONGO_LOCAL, {
+// process.env.MONGO_LOCAL
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
   }).then(() => console.log('Mongodb connected...'))
   .catch(err => console.log(err));
