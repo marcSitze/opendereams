@@ -7,7 +7,11 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const port = process.env.PORT || 5000;
 const app = express();
-// require('dotenv').config();
+
+if(process.env.NODE_ENV != 'production'){
+  require('dotenv').config();
+}
+
 const routes = require('./routes/index');
 const summerRoute = require('./routes/summerForm');
 // const chihuahuaRoute = require('./routes/chihuahuaForm');
@@ -17,7 +21,8 @@ const auth = require('./routes/auth');
 const adminRoute = require('./routes/admin');
 
 // Connection to database
-mongoose.connect(process.env.MONGODB_URI, {
+// process.env.MONGODB_URI
+mongoose.connect(process.env.MONGO_LOCAL, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
   }).then(() => console.log('Mongodb connected...'))
   .catch(err => console.log(err));

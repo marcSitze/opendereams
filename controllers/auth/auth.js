@@ -4,24 +4,33 @@ const User = require('../../models/user');
 
 exports.getLogin = (req, res) => {
 
-    res.render('auth/login');
+    res.render('auth/login', {
+        user: new User()
+    });
 };
 
 exports.getRegister = async (req, res) => {
 
-    res.render('auth/register');
+    res.render('auth/register', {
+        user: new User()
+    });
   
 };
 
 exports.register = async (req, res) => {
     const { email, password } = req.body;
-
+    const errors = [];
     let user;
     try {
         user = await User.findOne({ email });
 
         if(user){
-            return res.status(400).json({ msg: "user already exists" });
+            errors.push({ msg: "user already exists" })
+            // return res.status(400).json({ msg: "user already exists" });
+            return res.render('auth/register', {
+                user: new User(),
+                errors
+            });
         }
 
         user = new User({
@@ -55,19 +64,29 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
    const { email, password } = req.body;
    let user = await User.findOne({ email });
-
+    let errors = [];
    if(!user){
-       return res.status(400).json({
-           "msg": "this login is not valid"
-       });
+       errors.push({ msg: "these credidentials are not valid" });
+    //    return res.status(400).json({
+    //        "msg": "this login is not valid"
+    //    });
+    return res.status(400).render('auth/login', {
+        errors,
+        user: new User()
+    });
    }
 
-   const isMatch = password == user.password? true: false;
+   const isMatch = password == user.password ? true: false;
 
    if(!isMatch){
-     return res.status(400).json({
-        "msg": "this login is not valid"
-     });
+    errors.push({ msg: "these credidentials are not valid" });
+    //  return res.status(400).json({
+    //     "msg": "this login is not valid"
+    //  });
+     return res.status(400).render('auth/login', {
+        errors,
+        user: new User()
+    });
    }
 
     const payload = {
