@@ -7,12 +7,13 @@ const methodOverride = require('method-override');
 const port = process.env.PORT || 5000;
 const app = express();
 
-// import routes
-const indexRoute = require('./routes/index');
-const reglogRoute = require('./routes/reglog');
-const uploadRoute = require('./routes/upload');
+const routes = require('./routes/index');
+const summerRoute = require('./routes/summerForm');
+// const chihuahuaRoute = require('./routes/chihuahuaForm');
+// const articlesRouter = require('./routes/articlesRouter');
+const artRouter = require('./routes/articles');
+const auth = require('./routes/auth');
 const adminRoute = require('./routes/admin');
-const meRoute = require('./routes/me');
 
 // To parse form data
 app.use(express.urlencoded({ extended: false }));
@@ -33,17 +34,12 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/ups')));
  
-// app.use((req, res, next) => {
-//     req.requestTime = new Date().toISOString(); 
-//     console.log(req.headers); 
-// });
-   
-// Display all the videos and images
-app.use('/', indexRoute);
-app.use('/', reglogRoute);
+app.use('/', artRouter);
+app.use('/', routes);
+app.use('/summer', summerRoute);
+// app.use('/chihuahua', chihuahuaRoute);
+app.use('/', auth);
 app.use('/admin', adminRoute);
-app.use('/upload', uploadRoute);
-app.use('/me', meRoute);
 
 // create server 
 app.listen(port, () => console.log('Server is listening on port ' + port));  

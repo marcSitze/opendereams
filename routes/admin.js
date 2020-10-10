@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const Product = require('../models/Product');
+const Article = require('../models/Article');
 const path = require('path');
 const fs = require('fs');
-const Category = require('../models/Category');
+const isAuth = require('../middlewares/auth/isAuth');
 
 // multer config
 const storage = multer.diskStorage({
@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
       //  console.log(req.user);
         const ext = file.mimetype.split('/')[1];
-         callback(null, `product-${Date.now()}.${ext}`);
+         callback(null, `article-${Date.now()}.${ext}`);
         // callback(null, `user-${Date.now()}.${ext}`);
 
  }
@@ -32,30 +32,13 @@ const multerFilter = (req, file, cb) => {
 };
 
 
-
-// Display admin panel
-router.get('/', async (req, res) => {
-    // render the admin template 
-    // res.send('here is the admin route');
-    try{
-        const products = await Product.find({});
-        res.render('admin/index', {
-            products
-        });
-    } catch(err) {
-        console.error(err);
-    }
-    
-});
-
 // get the Add product page
 router.get('/create', async (req, res) => {   
     // render the create product page
-    let categories = await Category.find({});
+
    try {
     res.render('admin/create', {
-        product: new Product(),
-        categories
+        article: new Article()
     });
    } catch (error) {
        console.error(error);
@@ -66,7 +49,7 @@ router.get('/create', async (req, res) => {
 // create a new product
 router.post('/create', (req, res) => {
     const errors = [];
-    let product;
+    let article;
 
     const upload = multer({
         storage: storage,
@@ -80,57 +63,53 @@ router.post('/create', (req, res) => {
             console.log('Error uploading file.');
          }
         // console.log(req.body);
-        const { name, price, category, quantity, image, description } = req.body;
-        if(!name){
-            errors.push({ msg: "please enter the product name" });
+        const { title, description, markdown } = req.body;
+        if(!title){
+            errors.push({ msg: "please enter the article title" });
         }
-        if(!price){
-            errors.push({ msg: "please enter the product price" });
+        if(!description){
+            errors.push({ msg: "please enter the article description" });
         }
-        if(!category){
-            errors.push({ msg: "please enter the product category" });
-        }
-        if(!quantity){
-            errors.push({ msg: "please enter the product quantity" });
+        if(!markdown){
+            errors.push({ msg: "please enter the article markdown" });
         }
         if(!req.file){
             errors.push({ msg: "please upload an image" });
         }    
-        if(!description){
-            errors.push({ msg: "please enter the product description" });
-        }
+    
         // console.log(req.file);
-       
-        product = new Product({ 
-            name,
-            price,
-            category,
-            quantity,
-            image: req.file.filename,
-            description
+
+      
+        article = new Article({ 
+            title,
+            description,
+            markdown,
+            image: req.file.filename
         });
-        if(!name || !price || !category || !req.file || !description) {
+        if(!title || !description || !req.file || !markdown) {
             //res.render('partials/product');
-            if(product.image != null){
-                fs.unlink(path.join('ups', product.image), function(err){
+            console.log(article);
+            if(article.image != null){
+                fs.unlink(path.join('ups', article.image), function(err){
                     if(err) console.error(err);
                 });
             }
             return res.render('admin/create', {
                 errors,
-                product
+                article
             });
         }
         try{
-          const newProduct = await product.save();
-        //    res.send(newProduct);
-        res.redirect(`/admin/products/${product.id}`);
+          const newArticle = await article.save();
+        //    res.send(newArticle);
+        // res.redirect(`/admin/products/${article.id}`);
+        res.redirect(`/articles/${article.slug}`)
            console.log('product created...');
         }catch(err){
             console.error(err);
             return res.render('admin/create', {
                 errors,
-                product
+                article
             });
         }
     });
@@ -151,46 +130,28 @@ router.get('/products', async (req, res) => {
  
 });
 
-// Get a specific product
-router.get('/products/:id', async (req, res) => {
-    // render the create product page
-    try{
-        const categories = await Category.find({});
-        const product = await Product.findById(req.params.id);
-        console.log(product);
-        res.render('admin/product', {
-            product,
-            categories
-        });
-    } catch(err) {
-        console.error(err);
-    }
-
-});
 // render the edit product page
-router.get('/products/:id/edit', async (req, res) => {
+router.get('/edit/:id', async (req, res) => {
     // render the create product page
     // res.send('edit a product');
-    let product;
+    let article;
     try{
-        const categories = await Category.find({});
-        product = await Product.findById(req.params.id);
+        article = await Article.findById(req.params.id);
         res.render('admin/edit', {
-            product,
-            categories
+            article
         });
     } catch(err) {
         console.error(err);
     }
 });
 // Edit a product 
-router.put('/products/:id', async (req, res) => {
+router.put('/articles/edit/:id', async (req, res) => {
     // render the create product page
     // res.send('edit a product');
 
     const errors = [];
-    let product;
-
+    let article;
+ 
     const upload = multer({
         storage: storage,
         fileFilter: multerFilter
@@ -203,152 +164,94 @@ router.put('/products/:id', async (req, res) => {
             console.log('Error uploading file.');
          }
         // console.log(req.body);
-        const { name, price, category, quantity, image, description } = req.body;
-        if(!name){
-            errors.push({ msg: "please enter the product name" });
+        const { title, description, markdown } = req.body;
+        if(!title){
+            errors.push({ msg: "please enter the article title" });
         }
-        if(!price){
-            errors.push({ msg: "please enter the product price" });
-        }
-        if(!category){
-            errors.push({ msg: "please enter the product category" });
-        }
-        if(!quantity){
-            errors.push({ msg: "please enter the product quantity" });
-        } 
         if(!description){
-            errors.push({ msg: "please enter the product description" });
+            errors.push({ msg: "please enter the article description" });
         }
-        // console.log(req.file);
+        if(!markdown){
+            errors.push({ msg: "please enter the article markdown" });
+        }
         if(!req.file){
             errors.push({ msg: "please upload an image" });
-            return res.render('admin/edit', {
-                errors,
-                product: req.body
-                
-            });
-        }    
+        }   
     
-       const uproduct = { 
-            name,
-            price,
-            category,
-            quantity,
-            image: req.file.filename,
-            description
+       const uarticle = { 
+            title,
+            description,
+            markdown,
+            image: req.file.filename
         };
-        if(!name || !price || !category || !req.file || !description) {  
+        if(!title || !description || !markdown || !req.file) {  
 
-            if(product.image != null){
-                fs.unlink(path.join('ups', product.image), function(err){
+            if(article.image != null){
+                fs.unlink(path.join('ups', article.image), function(err){
                     if(err) console.error(err);
                 });
             }
             return res.render(`admin/edit`, {
                 errors,
-                product: uproduct
+                article: uarticle
             });
         }
         try{
-            const categories = await Category.find({});
-            product = await Product.findById(req.params.id);
-            if(product){
-                if(product.image != null){
-                    fs.unlink(path.join('ups', product.image), function(err){
+            article = await Article.findById(req.params.id);
+            if(article){
+                if(article.image != null){
+                    fs.unlink(path.join('ups', article.image), function(err){
                         if(err) console.error(err);
                     });
                 }
-                product = await Product.findOneAndUpdate(
+                article = await Article.findOneAndUpdate(
                     { _id: req.params.id },
-                    { $set: uproduct },
+                    { $set: uarticle },
                     { new: true }
                     );
-                console.log('product updated...');
-                return res.json(product);
+                console.log('article updated...');
+                return res.redirect(`/articles/${article.slug}`);
                 
             }
             // create new product if not seen 
-            product = new Product(uproduct);
-            await product.save();
-            res.json(product);
+            article = new Article(uarticle);
+            await article.save();
+            // res.json(article);
+            res.redirect(`/articles/${article.slug}`)
         }catch(err){
             console.error(err);
             return res.render(`admin/edit`, {
                 errors,
-                product
+                article
             });
         }
     });
 }); 
- 
+   
 // Delete a product
-router.delete('/products/:id', async (req, res) => {
-    let product;
+router.delete('/articles/:id', async (req, res) => {
+    let article;
     try{
-        product = await Product.findById(req.params.id);
-        if(product){
-            if(product.image != null){
-                fs.unlink(path.join('ups', product.image), function(err){
+        article = await Article.findById(req.params.id);
+        if(article){
+            if(article.image != null){
+                fs.unlink(path.join('ups', article.image), function(err){
                     if(err) console.error(err);
                 });
             }
-            await product.remove();
-           return res.send('product deleted');
+            await article.remove();
+        //    return res.send('article deleted');
+            return res.redirect('/articles');
         }
-        res.send('deleted...');
+        // res.send('deleted...');
+        console.log('article deleted...');
+        res.redirect('/articles');
     }catch(err){
         console.error(err);
     }
 });
 
-// Render the create category page
-router.get('/category', async (req, res) => {
-    let categories; 
-    try {
-        categories = await Category.find({});
-        res.render('admin/category', {
-            categories
-        })
-    } catch (error) {
-        console.error(error);
-    }
-});
-
-// Create a new category
-router.post('/category', async (req, res) => {
-    let errors = [];
-    let category;
-    try {
-        const categories = await Category.find({});
-        if(!req.body.category){
-            errors.push({ msg: "Please enter a category" });
-            return res.render('admin/category', {
-                errors,
-                categories
-            });
-        }
-        
-        category = await Category.findOne({ name: req.body.category });
-        if(category){
-            errors.push({ msg: "This category already exists" });
-            return res.render('admin/category', {
-                errors,
-                categories
-            });
-        }
-
-        category = new Category({
-            name: req.body.category
-        });
-
-        await category.save();
-        console.log('Category created...');
-        res.redirect('/admin/category');
-
-    } catch (error) {
-        console.error(error);
-    }
-});
-
 
 module.exports = router;
+
+

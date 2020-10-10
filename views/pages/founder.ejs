@@ -1,0 +1,28 @@
+
+<!-- <body style="background-color: black;" data-spy="scroll" data-target=".navbar" data-offset="65"> -->
+
+    <!-- Preloader -->
+    <!-- <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div> -->
+  <!-- Header Ends -->
+
+    
+<section id="founder-page">
+    <%- include('../layouts/header.ejs') %> 
+    <div class="container-fluid" style="background-color: black;">
+        <div class="row">
+        <% users.forEach(user => { %>
+           <% if(user.id == num) { %>
+               <div class="col-md-6">
+                   <img src="<%= user.image%>" width="100%" />
+               </div>
+               <div class="col-md-6">
+                  <p style="font-size: 18px; color: white;"><%= user.description %></p>
+               </div>
+          <% } %> 
+        <% })%> 
+        </div>
+    </div>
+</section>
+<%- include('../layouts/footer.ejs') %> 

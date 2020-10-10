@@ -1,0 +1,28 @@
+<%- include('../layouts/header.ejs') %> 
+  <div class="container">
+    <h1 class="mb-4">Blog Articles</h1>
+    <% if(user == true) { %>
+      <a href="/admin/create" class="btn btn-success">New Article</a>
+     <%  }  %> 
+
+    <% articles.forEach(article => { %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h4 class="card-title"><%= article.title %></h4>
+          <div class="card-subtitle text-muted mb-2">
+            <%= article.createdAt.toLocaleDateString() %>
+          </div>
+          <div class="card-text mb-2"><%= article.description %></div>
+          <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
+          <% if(user == true) { %>
+          <a href="/admin/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+          <form action="/admin/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+          <%  }  %> 
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+<%- include('../layouts/footer.ejs') %> 

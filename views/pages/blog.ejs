@@ -1,0 +1,33 @@
+<%- include('../layouts/header.ejs') %>
+<section>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12">
+        <h1 class="display-3 text-dark mb-3"><strong><%= article.title %></<strong></h1>
+          <div class="text-muted mb-2">
+            <%= article.createdAt.toLocaleDateString() %>
+          </div>
+          <p class="text-justify">
+            <%- article.sanitizedHtml %>
+          </p>
+          <div class="my-3">
+            <img src="/img/services/service-tab-img-02.jpg" style="height: 420px" class="img-fluid w-100" alt="">
+          </div>
+  
+        </div>
+      <div class="col-md-12">
+          <p class="text-justify">
+            <%- article.sanitizedHtml %>
+          </p>
+
+      </div>
+    
+    <%- include('../pages/_comments.ejs') %> 
+
+
+    </div>
+    </div>
+</section>
+<%- include('../layouts/footer.ejs') %>
+<script type="text/javascript" src="/js/blog.js"></script>

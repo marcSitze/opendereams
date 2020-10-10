@@ -1,10 +1,10 @@
-<%- include('./header') %>
-<div class="container-fluid">
+<%- include('../layouts/header.ejs') %>
+<div class="container">
   <div class="row">
-    <%- include('./sidebar') %> 
+
     <div class="col-md-10">
       <br><br><br>
-      <h1>Add a new product</h1>
+      <h1>Create new article</h1>
       <% if(locals.errors != null) {%>
         <% errors.forEach(error =>{ %>
             <li class="alert alert-danger"><%= error.msg %></li>
@@ -13,9 +13,11 @@
     <form action="/admin/create" method="POST" enctype="multipart/form-data">
         <%- include('../partials/_product') %> 
       <div class="my-3">
-        <button type="submit" class="btn btn-info mt-5 mb-3">Create</button>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a href="/articles" class="btn btn-secondary">Cancel</a>
       </div>
     </form>
     </div>
   </div>
 </div>
+<%- include('../layouts/footer.ejs') %>
