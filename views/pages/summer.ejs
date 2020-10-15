@@ -1,8 +1,8 @@
-<%- include('../layouts/header.ejs') %> 
+<%- include('../layouts/header.ejs') %>
 <link rel="stylesheet" href="../css/main.css">
 <section id="home">
     <!-- Background Video -->
-    <video id="home-bg-video" poster="video/solo.jpg" autoplay loop muted>
+    <video id="home-bg-video" poster="video/solo.mp4" autoplay loop muted>
         <source src="../video/summerAcademy.mp4" type="video/mp4">
     </video>
 
@@ -83,7 +83,7 @@
 
     </div>
 
-    
+
     <!-- Arrow Down -->
     <a href="#about" id="arrow-down" class="smooth-scroll" class="position">
         <i class="fa fa-angle-down"></i>
@@ -93,7 +93,7 @@
 <section id="about">
     <div class="row">
         <div class="col-md-7 col-sm-7 wow slideInLeft">
-            
+
         </div>
     </div>
 
@@ -105,6 +105,7 @@
 
  <!--Application Requirement-->
     <section id="application_requirements">
+        <div class="container">
         <h2>Application Requirements</h2>
         <p style="font-size: 18px; margin-left: 10px;">In addition to the application form here, please also submit via email the following documents to <a href="#">info@open-dreams.org</a></p>
         <ol style="font-size: 16px; margin-left: 10px;">
@@ -116,13 +117,17 @@
             <li>Any other certificate or testimonial of your accomplishments in leadership.</li>
         </ol><br/>
             <p style="font-size: 18px; margin-left: 10px;">For all other inquiries, send an email to <a href="#">info@open-dreams.org</a>. You may also contact any member of the team on whatsapp on the following numbers: +237 670688062. We shall only consider complete applications and no applications shall be received after the deadline.</p>
+        </div>
     </section>
     <section id="acceptance_rate">
-        <h2>Summer Academy</h2>
-        <p style="font-size: 16px; margin-left: 10px;">Thank you for your interest in Open Dreams! Each summer we host an amazing and very intensive Open Dreams Summer Academy in Bamenda, Cameroon for high-achieving low-income Cameroonian students and this year Yaounde, Cameroon has been added. For three months, students study Math, English, Computer Programming, the Internet, International Education, Entrepreneurial Leadership and much more including taking part in very exciting extra-curricular activities and Community Service Learning (hands-on). Numerous Skype sessions are held with international Education experts to enhance the global experience. Students take College Preparatory Tests (SAT, TOEFL, Duolingo etc) weekly! The top-performing and committed students at the end of the program are then retained as Open Dreams Scholars and paired with Mentors to guide the student through the application processes for International Scholarships to top Universities Worldwide!  Read more about some of our incredible scholars and where they are now, at the bottom of this page and the website.</p>
+        <div class="container">
+            <h2>Summer Academy</h2>
+            <p style="font-size: 16px; margin-left: 10px;">Thank you for your interest in Open Dreams! Each summer we host an amazing and very intensive Open Dreams Summer Academy in Bamenda, Cameroon for high-achieving low-income Cameroonian students and this year Yaounde, Cameroon has been added. For three months, students study Math, English, Computer Programming, the Internet, International Education, Entrepreneurial Leadership and much more including taking part in very exciting extra-curricular activities and Community Service Learning (hands-on). Numerous Skype sessions are held with international Education experts to enhance the global experience. Students take College Preparatory Tests (SAT, TOEFL, Duolingo etc) weekly! The top-performing and committed students at the end of the program are then retained as Open Dreams Scholars and paired with Mentors to guide the student through the application processes for International Scholarships to top Universities Worldwide!  Read more about some of our incredible scholars and where they are now, at the bottom of this page and the website.</p>
 
-        <p style="font-size: 16px; margin-left: 10px;">Are you a passionate, dedicated, and high-achieving Cameroonian student in lower-Sixth or nearly finished your high school studies??? Are you also a holder of the GCE Advanced Level Certificate not earlier than 2017 with a minimum score of 22 points and interested in studying abroad?  Are you very ambitions and eager to make a difference in the community? Then <a href="#form">APPLY NOW!</a>
-</p>
+            <p style="font-size: 16px; margin-left: 10px;">Are you a passionate, dedicated, and high-achieving Cameroonian student in lower-Sixth or nearly finished your high school studies??? Are you also a holder of the GCE Advanced Level Certificate not earlier than 2017 with a minimum score of 22 points and interested in studying abroad?  Are you very ambitions and eager to make a difference in the community? Then <a href="#form">APPLY NOW!</a>
+            </p>
+        </div>
+
     </section>
     <!-- Application Form -->
 
@@ -137,7 +142,7 @@
     <div class="wrap-contact100">
         <div class="errors"></div>
 
-        <%- include('./summerForm.ejs') %> 
+        <%- include('./summerForm.ejs') %>
         <div class="success"></div>
     </div>
 </div>
@@ -151,4 +156,4 @@
    }
 </script> -->
 
-<%- include('../layouts/footer.ejs') %> 
+<%- include('../layouts/footer.ejs') %>

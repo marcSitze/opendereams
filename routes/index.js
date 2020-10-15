@@ -14,6 +14,10 @@ router.get('/about', (req, res) => {
     res.render('pages/about');
 });
 
+router.get('/about', (req, res) => {
+    res.render('pages/about');  
+});
+
 // Render the scholars page
 router.get('/scholars', (req, res) => {
     res.render('pages/scholars');
