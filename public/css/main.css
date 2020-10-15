@@ -5,42 +5,28 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
-@font-face {
-  font-family: Raleway-Black;
-  src: url('../fonts/raleway/Raleway-Black.ttf'); 
-}
-
-@font-face {
-  font-family: Raleway-SemiBold;
-  src: url('../fonts/raleway/Raleway-SemiBold.ttf'); 
-}
-
-@font-face {
-  font-family: Raleway-Bold;
-  src: url('../fonts/raleway/Raleway-Bold.ttf'); 
-}
-
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
 body, html {
 	height: 100%;
-	font-family: Raleway-SemiBold, sans-serif;
+	font-family: Raleway, sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Raleway-SemiBold;
+    font-family: Raleway, serif ;
 	font-size: 14px;
 	line-height: 1.7;
 	/* color: #666666; */
 	margin: 0px;
+    font-weight: bold;
 	transition: all 0.4s;
 	-webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
@@ -61,7 +47,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Raleway-SemiBold;
+  font-family: Raleway, serif;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -130,7 +116,7 @@ iframe {
 [ Contact ]*/
 
 .container-contact100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -199,8 +185,9 @@ iframe {
 }
 
 .label-input100 {
-  font-family: Raleway-SemiBold;
+  font-family: Raleway;
   font-size: 14px;
+  font-weight: 600;
   color: #555555;
   line-height: 1.5;
 }
@@ -211,8 +198,9 @@ iframe {
   background: #f2f2f2;
   border-radius: 2px;
 
-  font-family: Raleway-SemiBold;
+  font-family: Raleway;
   font-size: 20px;
+  font-weight: 600;
   color: #686868;
   line-height: 1.2;
   padding: 0 28px;
@@ -295,8 +283,9 @@ textarea.input100 {
   min-width: 150px;
   height: 62px;
 
-  font-family: Raleway-Bold;
+  font-family: Raleway sans-serif;
   font-size: 16px;
+  font-weight: bolder;
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;
@@ -353,8 +342,9 @@ textarea.input100 {
   right: 10px;
   pointer-events: none;
 
-  font-family: Raleway-SemiBold;
+  font-family: Raleway;
   color: #c80000;
+  font-weight: 600;
   font-size: 13px;
   line-height: 1.4;
   text-align: left;
@@ -403,8 +393,9 @@ textarea.input100 {
 .contact100-more {
   display: block;
   max-width: 960px;
-  font-family: Raleway-SemiBold;
+  font-family: Raleway;
   font-size: 20px;
+  font-weight: 600;
   color: #fff;
   line-height: 1.4;
   text-align: center;
