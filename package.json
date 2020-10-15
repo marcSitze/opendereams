@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.2.6",
+    "@xelgrp/configu": "^1.1.0",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "braintree": "^2.23.0",
@@ -31,7 +32,6 @@
     "startbootstrap-heroic-features": "^4.2.2"
   },
   "devDependencies": {
-    "dotenv": "^8.2.0",
     "nodemon": "^2.0.4"
   }
 }
